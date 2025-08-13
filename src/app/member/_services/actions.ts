@@ -55,9 +55,6 @@ export async function processJoin(errors, formData: FormData) {
   if (hasErrors) {
     return errors
   }
-
-  // 회원 가입 처리를 위해  API 서버에 요청
-
   // 회원가입 완료시 로그인 페이지로 이동
   redirect('/member/login')
 }
