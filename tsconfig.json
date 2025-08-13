@@ -28,7 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/_global/fontsize.js"
+    "src/app/_global/fontsize.js",
+    "src/app/_global/components/ContentBox.tsx"
   ],
   "exclude": ["node_modules"]
 }

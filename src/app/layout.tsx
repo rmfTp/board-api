@@ -6,7 +6,7 @@ import StyledComponentsRegistry from './registry'
 
 export const metadata: Metadata = {
   title: '게시판',
-  description: '게시판 설명',
+  description: '게시판 설명...',
 }
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
       <body>
         <StyledComponentsRegistry>
           <Header />
-          {children}
+          <main className="main-content">{children}</main>
           <Footer />
         </StyledComponentsRegistry>
       </body>

@@ -1,34 +1,37 @@
 'use client'
 import styled, { css } from 'styled-components'
-import color from '../styles/color'
-import fontSize from '../styles/fontsize'
 import ButtonType from '../types/ButtonType'
+import color from '../styles/color'
+import fontsize from '../styles/fontsize'
+
 const commonStyle = css`
   width: 120px;
   height: 40px;
   border: 0;
   cursor: pointer;
   border-radius: 3px;
-  line-height: 40px;
   & + & {
     margin-left: 5px;
   }
+
   svg {
-    margin: 10px;
+    margin-right: 10px;
   }
 `
+
 export const Button = styled.button<ButtonType>`
   ${commonStyle}
   ${({ width }) =>
     width &&
     css`
-      width: ${width}px;
+      width: ${typeof width === 'string' ? width : width + 'px'};
     `}
-  ${({ height }) =>
+    ${({ height }) =>
     height &&
     css`
       height: ${height}px;
-    `} 
+    `}
+
     ${({ color: c }) => {
     c = c ?? 'primary'
     const _color = color[c] ? color[c] : c
@@ -36,23 +39,33 @@ export const Button = styled.button<ButtonType>`
       background: ${_color};
     `
   }}
-  ${({ fontColor: fc }) => {
-    fc = fc ?? 'light'
+    
+    ${({ fontsize: size }) => {
+    size = size ?? 'medium'
     return css`
-      color: ${color[fc] ?? fc};
+      font-size: ${fontsize[size] ?? size};
       svg {
-        color: ${color[fc] ?? fc};
+        font-size: ${fontsize[size] ?? size};
       }
     `
   }}
-  ${({ fontSize: s }) => {
-    s = s ?? 'large'
-    const _fontSize = fontSize[s] ? fontSize[s] : s
+
+  ${({ fontcolor }) => {
+    fontcolor = fontcolor ?? 'light'
+
     return css`
-      font-size: ${_fontSize};
+      color: ${color[fontcolor] ?? fontcolor};
       svg {
-        font-size: ${_fontSize};
+        color: ${color[fontcolor] ?? fontcolor};
       }
     `
   }}
 `
+
+export const SubmitButton = (props) => {
+  return (
+    <Button {...props} width="100%" height={60} fontsize="extra">
+      {props.children}
+    </Button>
+  )
+}

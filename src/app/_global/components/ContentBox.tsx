@@ -1,20 +1,11 @@
 'use client'
-import styled, { css } from 'styled-components'
 import React from 'react'
-type ContentBoxType = {
+import styled, { css } from 'styled-components'
+
+const StyledContentBox = styled.section<{
   children: React.ReactNode
   width?: number
-  className?: string
-}
-
-const ContentBox: ContentBoxType = ({ children, className, _width }) => {
-  return (
-    <section className={'layout-width ' + className} width={_width}>
-      {children}
-    </section>
-  )
-}
-const StyledContentBox = styled.div<ContentBoxType>`
+}>`
   padding: 50px;
   ${({ width }) =>
     width &&
@@ -22,4 +13,13 @@ const StyledContentBox = styled.div<ContentBoxType>`
       width: ${width}px;
     `}
 `
-export default React.memo(StyledContentBox)
+
+const ContentBox = ({ children, width }) => {
+  return (
+    <StyledContentBox className="layout-width" width={width}>
+      {children}
+    </StyledContentBox>
+  )
+}
+
+export default React.memo(ContentBox)
